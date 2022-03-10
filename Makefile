@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: jkong <jkong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 18:17:01 by jkong             #+#    #+#              #
-#    Updated: 2022/03/10 18:53:36 by jkong            ###   ########.fr        #
+#    Updated: 2022/03/10 21:30:30 by jkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 
 CC = gcc
-CFLAGS = -I$(INCLUDES_DIR) -Wall -Wextra -Werror
+CFLAGS = -I. -Wall -Wextra -Werror
 RM = rm -f
 AR = ar
 ARFLAGS = crs

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ctype_testchar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jkong <jkong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:28:26 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/08 13:39:48 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:35:35 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	return ('a' <= c && c <= 'z' || 'A' <= c && c <= 'Z');
+	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
 }
 
 int	ft_isdigit(int c)

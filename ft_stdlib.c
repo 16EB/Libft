@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stdlib.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jkong <jkong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:39:50 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/10 16:04:09 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/10 21:35:48 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	_isspace(int c)
 {
-	return (011 <= c && c <= 015 || c == ' ');
+	return ((011 <= c && c <= 015) || c == ' ');
 }
 
 int	ft_atoi(const char *str)
