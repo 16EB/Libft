@@ -6,7 +6,7 @@
 #    By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 18:17:01 by jkong             #+#    #+#              #
-#    Updated: 2022/03/11 12:35:00 by jkong            ###   ########.fr        #
+#    Updated: 2022/03/11 15:02:41 by jkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,33 @@ RM = rm -f
 AR = ar
 ARFLAGS = crs
 
-TARGET = libft.a
+NAME = libft.a
 INCS = libft.h
 SRCS = ft__io.c ft__string.c ft__string_split.c ft_ctype_testchar.c ft_string.c ft_string_compare.c ft_string_find.c ft__stdlib.c ft__string_function.c ft_ctype_letterconv.c ft_stdlib.c ft_string_bsd.c ft_string_duplicate.c
+SRCS_BONUS = ft___list.c ft___list_function.c ft___list_insert.c ft___list_remove.c
 OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-all: $(TARGET)
+all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
+	$(RM) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(TARGET)
+	$(RM) $(NAME)
 
 re: fclean all
+
+bonus: $(OBJS_BONUS)
+	$(AR) $(ARFLAGS) $(NAME) $?
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(TARGET): $(OBJS)
+$(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $?
 
 $(OBJS): $(INCS)
+
+$(OBJS_BONUS): $(INCS)
