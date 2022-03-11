@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:50:00 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/11 12:51:00 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:44:39 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (dst_len > len)
 		dst_len = len;
 	result = ft_calloc(dst_len + 1, sizeof(char));
-	if (result)
-	{
-		ft_memcpy(result, src, dst_len);
-		result[dst_len] = '\0';
-	}
+	if (result == NULL)
+		return (NULL);
+	ft_memcpy(result, src, dst_len);
+	result[dst_len] = '\0';
 	return (result);
 }
 
@@ -48,12 +47,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	src1_len = ft_strlen(s1);
 	src2_len = ft_strlen(s2);
 	result = ft_calloc(src1_len + src2_len + 1, sizeof(char));
-	if (result)
-	{
-		ft_memcpy(result, s1, src1_len);
-		ft_memcpy(result + src1_len, s2, src2_len);
-		result[src1_len + src2_len] = '\0';
-	}
+	if (result == NULL)
+		return (NULL);
+	ft_memcpy(result, s1, src1_len);
+	ft_memcpy(result + src1_len, s2, src2_len);
+	result[src1_len + src2_len] = '\0';
 	return (result);
 }
 

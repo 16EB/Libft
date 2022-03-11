@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 13:39:50 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/10 22:54:51 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:38:36 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 		sign = *str++ == '-';
 	number = 0;
 	while (*str && ft_isdigit(*str))
-		number = 10 * number + (((sign ^ 1) << 1) - 1) * (*str++ - '0');
+		number = 10 * number + ((!sign << 1) - 1) * (*str++ - '0');
 	return (number);
 }
 

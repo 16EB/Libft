@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 13:03:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/11 15:43:46 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:41:57 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		(*lst)->next = NULL;
 		*lst = next;
 	}
-	*lst = NULL;
 }
