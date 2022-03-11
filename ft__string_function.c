@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:51:54 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/10 19:00:44 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/11 12:53:33 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*result;
 	unsigned int	i;
 
-	result = ft_calloc(ft_strlen(s), sizeof(char));
+	if (!s || !f)
+		return (NULL);
+	result = ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (result)
 	{
 		i = 0;
@@ -26,6 +28,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 			result[i] = f(i, s[i]);
 			i++;
 		}
+		result[i] = '\0';
 	}
 	return (result);
 }
@@ -34,6 +37,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
 
+	if (!s || !f)
+		return ;
 	i = 0;
 	while (s[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:31:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/10 17:03:04 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/11 12:48:36 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char	**ft_split(char const *s, char c)
 	int		on_elem;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	count = 0;
 	on_elem = 0;
 	i = 0;
