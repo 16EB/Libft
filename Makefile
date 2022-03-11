@@ -6,11 +6,11 @@
 #    By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 18:17:01 by jkong             #+#    #+#              #
-#    Updated: 2022/03/11 16:55:33 by jkong            ###   ########.fr        #
+#    Updated: 2022/03/11 17:04:22 by jkong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 CC = gcc
 CFLAGS = -I. -Wall -Wextra -Werror
@@ -36,14 +36,14 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $?
-
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $?
+
+bonus: $(OBJS_BONUS)
+	$(AR) $(ARFLAGS) $(NAME) $?
 
 $(OBJS): $(INCS)
 
