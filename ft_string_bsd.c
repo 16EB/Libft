@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:48:10 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/08 20:55:18 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:17:45 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,25 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	while (*src++)
 		i++;
 	return (i);
+}
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	haystack_len;
+	size_t	needle_len;
+
+	needle_len = ft_strlen(needle);
+	if (needle_len == 0)
+		return ((char *)haystack);
+	haystack_len = ft_strlen(haystack);
+	if (haystack_len > len)
+		haystack_len = len;
+	while (*haystack && len >= needle_len)
+	{
+		if (ft_strncmp(haystack, needle, needle_len) == 0)
+			return ((char *)haystack);
+		haystack++;
+		len--;
+	}
+	return (NULL);
 }
