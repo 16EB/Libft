@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 14:30:18 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/08 22:15:44 by jkong            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:36:37 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		i = 0;
 		while (i < n)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
 			i++;
 		}
 	}
@@ -63,7 +63,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		while (i > 0)
 		{
 			--i;
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
 		}
 		return (dst);
 	}
