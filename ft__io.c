@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:53:59 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/10 22:56:44 by jkong            ###   ########.fr       */
+/*   Updated: 2022/07/04 13:40:26 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	ft_putchar_fd(char c, int fd)
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	write(fd, s, ft_strlen(s));
 }
 
 void	ft_putendl_fd(char *s, int fd)
@@ -32,20 +31,20 @@ void	ft_putendl_fd(char *s, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -2147483648)
+	const int		sign = n < 0;
+	char			buf[11];
+	const size_t	count = sizeof(buf) / sizeof(*buf);
+	size_t			i;
+
+	i = count;
+	if (n == 0)
+		buf[--i] = '0';
+	while (n)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(-(n % 10), fd);
+		buf[--i] = '0' + (1 - (sign << 1)) * (n % 10);
+		n /= 10;
 	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
-	}
-	else
-	{
-		if (n >= 10)
-			ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd('0' + n % 10, fd);
-	}
+	if (sign)
+		buf[--i] = '-';
+	write(fd, buf + i, count - i);
 }

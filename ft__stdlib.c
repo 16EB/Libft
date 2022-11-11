@@ -6,45 +6,48 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:50:57 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/21 17:38:05 by jkong            ###   ########.fr       */
+/*   Updated: 2022/07/04 13:55:36 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	_nbrlen(int n)
+static size_t	_nbrlen(int n)
 {
-	int	value;
+	size_t	value;
 
-	value = !n;
-	while (n)
+	value = 0;
+	if (n == 0)
+		value++;
+	while (n != 0)
 	{
 		value++;
 		n /= 10;
 	}
-	return (value - 1);
+	if (n < 0)
+		value++;
+	return (value);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	len;
-	char	*result;
-	size_t	i;
+	const int		sign = n < 0;
+	const size_t	len = _nbrlen(n);
+	char *const		result = ft_calloc(len + 1, sizeof(char));
+	size_t			i;
 
-	len = (n < 0) + 1 + _nbrlen(n);
-	result = ft_calloc(len + 1, sizeof(char));
-	if (result == NULL)
+	if (!result)
 		return (NULL);
-	if (n < 0)
-		result[0] = '-';
 	i = len;
 	result[i--] = '\0';
-	if (!n)
+	if (n == 0)
 		result[i--] = '0';
-	while (n)
+	while (n != 0)
 	{
-		result[i--] = '0' + (1 - ((n < 0) << 1)) * (n % 10);
+		result[i--] = '0' + (1 - (sign << 1)) * (n % 10);
 		n /= 10;
 	}
+	if (sign)
+		result[i--] = '-';
 	return (result);
 }

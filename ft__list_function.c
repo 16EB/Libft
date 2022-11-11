@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft___list_remove_bonus.c                           :+:      :+:    :+:   */
+/*   ft__list_function.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 13:03:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/21 17:36:55 by jkong            ###   ########.fr       */
+/*   Updated: 2022/07/04 13:47:42 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst)
+	if (!lst || !f)
 		return ;
-	if (del)
-		del(lst->content);
-	free(lst);
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*next;
+	t_list	*result;
+	t_list	*elem;
 
-	if (!lst)
-		return ;
-	while (*lst)
+	if (!lst || !f)
+		return (NULL);
+	result = NULL;
+	while (lst)
 	{
-		next = (*lst)->next;
-		(*lst)->next = NULL;
-		ft_lstdelone(*lst, del);
-		*lst = next;
+		elem = ft_lstnew(f(lst->content));
+		if (!elem)
+		{
+			ft_lstclear(&result, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&result, elem);
+		lst = lst->next;
 	}
+	return (result);
 }

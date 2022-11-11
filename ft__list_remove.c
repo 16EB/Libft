@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft___list_insert.c                                 :+:      :+:    :+:   */
+/*   ft__list_remove.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 13:03:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/03/11 14:32:06 by jkong            ###   ########.fr       */
+/*   Updated: 2022/07/04 13:46:03 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (!lst || !new)
+	if (!lst)
 		return ;
-	new->next = *lst;
-	*lst = new;
+	if (del)
+		del(lst->content);
+	free(lst);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (!lst || !new)
+	t_list	*next;
+
+	if (!lst)
 		return ;
-	if (*lst)
-		ft_lstlast(*lst)->next = new;
-	else
-		*lst = new;
+	while (*lst)
+	{
+		next = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = next;
+	}
 }
