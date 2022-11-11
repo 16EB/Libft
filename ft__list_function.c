@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 13:03:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/07/04 13:47:42 by jkong            ###   ########.fr       */
+/*   Updated: 2022/11/12 01:39:22 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*result;
 	t_list	*elem;
+	void	*content;
 
 	if (!lst || !f)
 		return (NULL);
 	result = NULL;
 	while (lst)
 	{
-		elem = ft_lstnew(f(lst->content));
+		content = f(lst->content);
+		elem = ft_lstnew(content);
 		if (!elem)
 		{
 			ft_lstclear(&result, del);
+			if (del)
+				del(content);
 			return (NULL);
 		}
 		ft_lstadd_back(&result, elem);
