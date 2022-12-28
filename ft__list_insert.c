@@ -6,7 +6,7 @@
 /*   By: jkong <jkong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 13:03:32 by jkong             #+#    #+#             */
-/*   Updated: 2022/07/04 13:37:22 by jkong            ###   ########.fr       */
+/*   Updated: 2022/12/28 17:02:18 by jkong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
 		return ;
-	new->next = *lst;
+	ft_lstlast(new)->next = *lst;
 	*lst = new;
 }
 
